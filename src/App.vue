@@ -15,6 +15,9 @@
       </v-row>
       <v-container class="spacing-playground pa-6">
         <ContentTable :players="players"></ContentTable>
+        <v-row class="pa-4">
+          <Compare :players="players" />
+        </v-row>
       </v-container>
     </v-main>
   </v-app>
