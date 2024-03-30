@@ -2,6 +2,7 @@
   <v-btn block outlined elevation="6" color="secondary" @click="handleClick">
     {{ buttontext }}
   </v-btn>
+
   <v-autocomplete
     v-if="isCompare"
     label="Player 1"
@@ -9,7 +10,6 @@
     item-text="Player"
     variant="solo"
   ></v-autocomplete>
-
   <v-autocomplete
     v-if="isCompare"
     label="Player 2"
@@ -17,6 +17,10 @@
     item-text="Player"
     variant="solo"
   ></v-autocomplete>
+
+  <v-btn v-if="isCompare" block outlined elevation="6" color="secondary">
+    Compare
+  </v-btn>
 </template>
 
 <script setup>
@@ -31,12 +35,14 @@ const handleClick = () => {
   if (!isCompare.value) {
     buttontext.value = "Compare Players";
   } else {
-    buttontext.value = "Done";
+    buttontext.value = "End Process";
   }
   console.log(isCompare.value);
 };
 
 const getPlayerNames = (players) => {
-  return players.map((player) => player.Player + "  " + player.Pos);
+  return players.map(
+    (player) => player.Player + " Pos: " + player.Pos + " Team: " + player.Tm
+  );
 };
 </script>
