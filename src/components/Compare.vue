@@ -9,6 +9,7 @@
     :items="getPlayerNames(players)"
     item-text="Player"
     variant="solo"
+    v-model="selectedPlayer1"
   ></v-autocomplete>
   <v-autocomplete
     v-if="isCompare"
@@ -16,6 +17,7 @@
     :items="getPlayerNames(players)"
     item-text="Player"
     variant="solo"
+    v-model="selectedPlayer2"
   ></v-autocomplete>
   <v-btn
     v-if="isCompare"
@@ -27,7 +29,10 @@
   >
     Compare
   </v-btn>
-  <CompareSheet v-if="iscompactive" />
+  <CompareSheet
+    v-if="iscompactive"
+    :selectedPlayers="[selectedPlayer1, selectedPlayer2]"
+  />
 </template>
 
 <script setup>
@@ -37,6 +42,8 @@ const isCompare = ref(false);
 const buttontext = ref("Compare Players");
 const props = defineProps(["players"]);
 const iscompactive = ref(false);
+const selectedPlayer1 = ref(null);
+const selectedPlayer2 = ref(null);
 
 const handleClick = () => {
   isCompare.value = !isCompare.value;
